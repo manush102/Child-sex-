@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शब्दों का जादू - Movie & Web Series Reviews</title>
+    <meta name="description" content="Jiya's blog about movies, web series, and entertainment reviews in Hindi and English">
+    <meta name="keywords" content="movies, web series, reviews, Bollywood, Hollywood, Jiya">
+    <meta name="author" content="Jiya">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+        
+        .hindi {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        .nav-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1489599804159-5d97f06d4a83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .poster-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dark .bg-gray-100 {
+            background-color: #1f2937;
+        }
+        
+        .dark .bg-white {
+            background-color: #374151;
+        }
+        
+        .dark .text-gray-800 {
+            color: #f9fafb;
+        }
+        
+        .dark .text-gray-600 {
+            color: #d1d5db;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Navigation Bar (Sticky) -->
+    <header class="sticky top-0 z-50 bg-white shadow-md nav-shadow">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-film text-purple-600 text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800 hindi">शब्दों का जादू</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-purple-600 font-medium transition-colors duration-300">Home</a>
+                <a href="#blog" class="text-gray-600 hover:text-purple-600 font-medium transition-colors duration-300">Blog</a>
+                <a href="#about" class="text-gray-600 hover:text-purple-600 font-medium transition-colors duration-300">About</a>
+                <a href="#contact" class="text-gray-600 hover:text-purple-600 font-medium transition-colors duration-300">Contact</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-300">
+                    <i class="fas fa-moon text-gray-600"></i>
+                </button>
+                
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+        <!-- Main Content -->
+        <main class="w-full md:w-2/3">
+            <!-- Hero Banner -->
+            <section id="home" class="hero-bg rounded-2xl p-8 md:p-12 text-white mb-8 fade-in">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Welcome to <span class="hindi">शब्दों का जादू</span></h2>
+                    <p class="text-lg md:text-xl mb-6">Your ultimate destination for movie reviews, web series analysis, and entertainment insights in both Hindi and English.</p>
+                    <a href="#blog" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+                        Explore Latest Reviews
+                    </a>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="blog" class="mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 hindi">Latest Reviews & Articles</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Blog Post 1 -->
+                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80');"></div>
+                        <div class="p-4">
+                            <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded mb-2">Movie Review</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Pathaan: सुपरहीरो की वापसी</h3>
+                            <p class="text-gray-600 mb-4">SRK's comeback as Pathaan is a visual spectacle with high-octane action sequences and a compelling storyline.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 3 days ago</span>
+                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog Post 2 -->
+                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                        <div class="p-4">
+                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded mb-2">Web Series</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">The Family Man Season 3: What to Expect</h3>
+                            <p class="text-gray-600 mb-4">The much-awaited third season promises more thrilling adventures of Srikant Tiwari in this espionage drama.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 1 week ago</span>
+                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog Post 3 -->
+                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80');"></div>
+                        <div class="p-4">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded mb-2">Hollywood</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Oppenheimer: Nolan's Masterpiece</h3>
+                            <p class="text-gray-600 mb-4">Christopher Nolan delivers another cinematic marvel with Cillian Murphy's stellar performance as J. Robert Oppenheimer.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 2 weeks ago</span>
+                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="w-full md:w-1/3">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 fade-in">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full bg-purple-200 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Jiya</h3>
+                    <p class="text-gray-600 text-center mb-4">Movie Buff & Content Creator</p>
+                    <p class="text-gray-600 text-center text-sm mb-4">Passionate about cinema and storytelling. Sharing my perspectives on the latest movies and web series.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="social-icon text-gray-500 hover:text-purple-600">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="social-icon text-gray-500 hover:text-blue-600">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="social-icon text-gray-500 hover:text-red-600">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-6 fade-in">
+                <h3 class="font-bold text-gray-800 mb-3">Search</h3>
+                <div class="flex">
+                    <input type="text" placeholder="Search movies, series..." class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <button class="bg-purple-600 text-white px-4 rounded-r-lg hover:bg-purple-700 transition-colors duration-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Popular Posts -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 fade-in">
+                <h3 class="font-bold text-gray-800 mb-4">Popular Posts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-16 h-16 bg-cover bg-center rounded" style="background-image: url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1156&q=80');"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm">Animal: Raw & Intense</h4>
+                            <p class="text-xs text-gray-500">2 days ago</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-16 h-16 bg-cover bg-center rounded" style="background-image: url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm">12th Fail: Inspiring Story</h4>
+                            <p class="text-xs text-gray-500">1 week ago</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-16 h-16 bg-cover bg-center rounded" style="background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm">Asur 2: Mind-bending Thriller</h4>
+                            <p class="text-xs text-gray-500">2 weeks ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Join Telegram -->
+            <div class="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl shadow-md p-6 text-white fade-in">
+                <h3 class="font-bold text-xl mb-2">Join Our Community</h3>
+                <p class="mb-4">Get instant updates on new reviews and exclusive content.</p>
+                <a href="#" class="inline-block bg-white text-purple-600 font-bold py-2 px-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 w-full text-center">
+                    <i class="fab fa-telegram mr-2"></i> Join Telegram
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 hindi">शब्दों का जादू</h3>
+                    <p class="text-gray-300 mb-4">A blog by Jiya exploring the magical world of cinema and storytelling through detailed reviews and analysis.</p>
+                    <p class="text-gray-400 text-sm">© 2023 शब्दों का जादू. All rights reserved.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#blog" class="text-gray-300 hover:text-white transition-colors duration-300">Blog</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Subscribe to our newsletter for weekly updates.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            
+            if (document.body.classList.contains('dark')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
+</body>
+      </html>
