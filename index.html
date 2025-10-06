@@ -24,6 +24,7 @@
             --primary: #8b5cf6;
             --primary-dark: #7c3aed;
             --secondary: #f59e0b;
+            --accent: #10b981;
             --dark: #1f2937;
             --light: #f9fafb;
         }
@@ -55,18 +56,20 @@
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1489599804159-5d97f06d4a83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(124, 58, 237, 0.9)), url('https://images.unsplash.com/photo-1489599804159-5d97f06d4a83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
         }
         
         .poster-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
         }
         
         .poster-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
         }
         
         .social-icon {
@@ -107,6 +110,110 @@
         .dark .border-gray-200 {
             border-color: #4b5563;
         }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #eab308);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.4);
+        }
+        
+        .search-highlight {
+            background-color: rgba(245, 158, 11, 0.3);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .dark .modal-content {
+            background-color: #374151;
+        }
+        
+        .rating-stars {
+            color: #f59e0b;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .tag-movie {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        .tag-series {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .tag-hollywood {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .dark .tag-movie {
+            background-color: #3730a3;
+            color: #e0e7ff;
+        }
+        
+        .dark .tag-series {
+            background-color: #92400e;
+            color: #fef3c7;
+        }
+        
+        .dark .tag-hollywood {
+            background-color: #065f46;
+            color: #d1fae5;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -130,10 +237,18 @@
                     <i class="fas fa-moon text-gray-600"></i>
                 </button>
                 
-                <button class="md:hidden text-gray-600">
+                <button class="md:hidden text-gray-600" id="mobile-menu-button">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white py-4 px-4 shadow-lg" id="mobile-menu">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-purple-600">Home</a>
+            <a href="#blog" class="block py-2 text-gray-600 hover:text-purple-600">Blog</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">About</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">Contact</a>
         </div>
     </header>
 
@@ -145,7 +260,7 @@
                 <div class="max-w-2xl">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4">Welcome to <span class="hindi">शब्दों का जादू</span></h2>
                     <p class="text-lg md:text-xl mb-6">Your ultimate destination for movie reviews, web series analysis, and entertainment insights in both Hindi and English.</p>
-                    <a href="#blog" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+                    <a href="#blog" class="inline-block btn-primary font-bold py-3 px-6 rounded-lg">
                         Explore Latest Reviews
                     </a>
                 </div>
@@ -153,50 +268,18 @@
 
             <!-- Blog Section -->
             <section id="blog" class="mb-12">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 hindi">Latest Reviews & Articles</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 hindi">Latest Reviews & Articles</h2>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-gray-600 hidden md:block">Filter:</span>
+                        <button class="tag tag-movie active-filter" data-filter="all">All</button>
+                        <button class="tag tag-movie" data-filter="movie">Movies</button>
+                        <button class="tag tag-series" data-filter="series">Web Series</button>
+                    </div>
+                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Blog Post 1 -->
-                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
-                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80');"></div>
-                        <div class="p-4">
-                            <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded mb-2">Movie Review</span>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Pathaan: सुपरहीरो की वापसी</h3>
-                            <p class="text-gray-600 mb-4">SRK's comeback as Pathaan is a visual spectacle with high-octane action sequences and a compelling storyline.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 3 days ago</span>
-                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Blog Post 2 -->
-                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
-                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
-                        <div class="p-4">
-                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded mb-2">Web Series</span>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">The Family Man Season 3: What to Expect</h3>
-                            <p class="text-gray-600 mb-4">The much-awaited third season promises more thrilling adventures of Srikant Tiwari in this espionage drama.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 1 week ago</span>
-                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Blog Post 3 -->
-                    <article class="bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in">
-                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80');"></div>
-                        <div class="p-4">
-                            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded mb-2">Hollywood</span>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Oppenheimer: Nolan's Masterpiece</h3>
-                            <p class="text-gray-600 mb-4">Christopher Nolan delivers another cinematic marvel with Cillian Murphy's stellar performance as J. Robert Oppenheimer.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 2 weeks ago</span>
-                                <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300">Read More →</a>
-                            </div>
-                        </div>
-                    </article>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-posts">
+                    <!-- Blog posts will be dynamically loaded here -->
                 </div>
             </section>
         </main>
@@ -206,8 +289,8 @@
             <!-- Profile Card -->
             <div class="bg-white rounded-xl shadow-md p-6 mb-6 fade-in">
                 <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 rounded-full bg-purple-200 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-purple-600 text-3xl"></i>
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-white text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-1">Jiya</h3>
                     <p class="text-gray-600 text-center mb-4">Movie Buff & Content Creator</p>
@@ -230,10 +313,14 @@
             <div class="bg-white rounded-xl shadow-md p-4 mb-6 fade-in">
                 <h3 class="font-bold text-gray-800 mb-3">Search</h3>
                 <div class="flex">
-                    <input type="text" placeholder="Search movies, series..." class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <button class="bg-purple-600 text-white px-4 rounded-r-lg hover:bg-purple-700 transition-colors duration-300">
+                    <input type="text" id="search-input" placeholder="Search movies, series..." class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <button id="search-button" class="btn-primary px-4 rounded-r-lg">
                         <i class="fas fa-search"></i>
                     </button>
+                </div>
+                <div id="search-results" class="mt-4 hidden">
+                    <h4 class="font-semibold text-gray-800 mb-2">Search Results:</h4>
+                    <div id="results-container" class="space-y-2"></div>
                 </div>
             </div>
 
@@ -277,7 +364,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer id="contact" class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -318,57 +405,377 @@
         </div>
     </footer>
 
+    <!-- URL Modal -->
+    <div id="url-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Set Post URL</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">Enter the URL for this blog post:</p>
+            <input type="text" id="url-input" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="https://example.com/post">
+            <div class="flex justify-end space-x-3">
+                <button id="cancel-url" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                <button id="save-url" class="btn-primary px-4 py-2 rounded-lg">Save URL</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Theme Toggle
+        // Blog posts data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Pathaan: सुपरहीरो की वापसी",
+                description: "SRK's comeback as Pathaan is a visual spectacle with high-octane action sequences and a compelling storyline.",
+                image: "https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+                category: "movie",
+                tags: ["Bollywood", "Action", "SRK"],
+                date: "3 days ago",
+                rating: 4,
+                url: ""
+            },
+            {
+                id: 2,
+                title: "The Family Man Season 3: What to Expect",
+                description: "The much-awaited third season promises more thrilling adventures of Srikant Tiwari in this espionage drama.",
+                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+                category: "series",
+                tags: ["Web Series", "Thriller", "Amazon Prime"],
+                date: "1 week ago",
+                rating: 5,
+                url: ""
+            },
+            {
+                id: 3,
+                title: "Oppenheimer: Nolan's Masterpiece",
+                description: "Christopher Nolan delivers another cinematic marvel with Cillian Murphy's stellar performance as J. Robert Oppenheimer.",
+                image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80",
+                category: "movie",
+                tags: ["Hollywood", "Biography", "Christopher Nolan"],
+                date: "2 weeks ago",
+                rating: 5,
+                url: ""
+            },
+            {
+                id: 4,
+                title: "Animal: Raw & Intense",
+                description: "Ranbir Kapoor delivers a powerful performance in this intense family drama with raw emotions and stellar acting.",
+                image: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1156&q=80",
+                category: "movie",
+                tags: ["Bollywood", "Drama", "Ranbir Kapoor"],
+                date: "2 days ago",
+                rating: 4,
+                url: ""
+            },
+            {
+                id: 5,
+                title: "Asur 2: Mind-bending Thriller",
+                description: "The second season of Asur takes the thriller genre to new heights with its psychological depth and intriguing plot.",
+                image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                category: "series",
+                tags: ["Web Series", "Thriller", "Voot"],
+                date: "2 weeks ago",
+                rating: 4,
+                url: ""
+            },
+            {
+                id: 6,
+                title: "12th Fail: Inspiring Story",
+                description: "Vikrant Massey shines in this inspiring true story of perseverance and determination against all odds.",
+                image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+                category: "movie",
+                tags: ["Bollywood", "Drama", "Inspirational"],
+                date: "1 week ago",
+                rating: 5,
+                url: ""
+            }
+        ];
+
+        // DOM Elements
+        const blogPostsContainer = document.getElementById('blog-posts');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+        const resultsContainer = document.getElementById('results-container');
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const urlModal = document.getElementById('url-modal');
+        const closeModal = document.getElementById('close-modal');
+        const cancelUrl = document.getElementById('cancel-url');
+        const saveUrl = document.getElementById('save-url');
+        const urlInput = document.getElementById('url-input');
+        const filterButtons = document.querySelectorAll('.active-filter');
+
+        // Current post being edited
+        let currentPostId = null;
+
+        // Initialize the blog
+        function initBlog() {
+            renderBlogPosts(blogPosts);
+            setupEventListeners();
+        }
+
+        // Render blog posts
+        function renderBlogPosts(posts) {
+            blogPostsContainer.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.className = 'bg-white rounded-xl overflow-hidden shadow-md poster-card fade-in';
+                postElement.dataset.category = post.category;
+                postElement.dataset.id = post.id;
+                
+                // Generate star rating
+                const stars = generateStarRating(post.rating);
+                
+                // Generate tags
+                const tags = post.tags.map(tag => `<span class="tag tag-${post.category}">${tag}</span>`).join('');
+                
+                postElement.innerHTML = `
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('${post.image}');"></div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="tag tag-${post.category}">${post.category === 'movie' ? 'Movie' : 'Web Series'}</span>
+                            <div class="rating-stars">${stars}</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${post.title}</h3>
+                        <div class="mb-2">${tags}</div>
+                        <p class="text-gray-600 mb-4">${post.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> ${post.date}</span>
+                            <div class="flex space-x-2">
+                                <button class="set-url-btn text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300" data-id="${post.id}">
+                                    <i class="fas fa-link mr-1"></i> Set URL
+                                </button>
+                                <a href="${post.url || '#'}" class="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-300 ${post.url ? '' : 'disabled-link'}">
+                                    Read More →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                blogPostsContainer.appendChild(postElement);
+            });
+            
+            // Re-initialize fade-in animations
+            initFadeIn();
+        }
+
+        // Generate star rating HTML
+        function generateStarRating(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Theme Toggle
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Mobile Menu
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            
+            // Search Functionality
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Filter Buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const filter = e.target.dataset.filter;
+                    filterPosts(filter);
+                    
+                    // Update active filter
+                    filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+                    e.target.classList.add('active-filter');
+                });
+            });
+            
+            // URL Modal
+            closeModal.addEventListener('click', closeUrlModal);
+            cancelUrl.addEventListener('click', closeUrlModal);
+            saveUrl.addEventListener('click', saveUrlForPost);
+            
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Set URL buttons (delegated event listener)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('set-url-btn') || e.target.closest('.set-url-btn')) {
+                    const button = e.target.classList.contains('set-url-btn') ? e.target : e.target.closest('.set-url-btn');
+                    const postId = parseInt(button.dataset.id);
+                    openUrlModal(postId);
+                }
+            });
+        }
+
+        // Toggle theme
+        function toggleTheme() {
             document.body.classList.toggle('dark');
             
             if (document.body.classList.contains('dark')) {
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
             } else {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
             }
-        });
+        }
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
 
-        // Fade-in Animation on Scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+        // Perform search
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (query === '') {
+                searchResults.classList.add('hidden');
+                renderBlogPosts(blogPosts);
+                return;
+            }
+            
+            const results = blogPosts.filter(post => 
+                post.title.toLowerCase().includes(query) || 
+                post.description.toLowerCase().includes(query) ||
+                post.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+            
+            if (results.length > 0) {
+                // Highlight search terms in results
+                const highlightedResults = results.map(post => {
+                    const highlightedTitle = highlightText(post.title, query);
+                    const highlightedDesc = highlightText(post.description, query);
+                    
+                    return {
+                        ...post,
+                        title: highlightedTitle,
+                        description: highlightedDesc
+                    };
+                });
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
+                renderBlogPosts(highlightedResults);
+                searchResults.classList.add('hidden');
+            } else {
+                // Show no results message
+                resultsContainer.innerHTML = '<p class="text-gray-600">No results found. Try different keywords.</p>';
+                searchResults.classList.remove('hidden');
+            }
+        }
+
+        // Highlight search terms in text
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Filter posts by category
+        function filterPosts(category) {
+            if (category === 'all') {
+                renderBlogPosts(blogPosts);
+            } else {
+                const filteredPosts = blogPosts.filter(post => post.category === category);
+                renderBlogPosts(filteredPosts);
+            }
+        }
+
+        // Open URL modal
+        function openUrlModal(postId) {
+            currentPostId = postId;
+            const post = blogPosts.find(p => p.id === postId);
+            urlInput.value = post.url || '';
+            urlModal.style.display = 'flex';
+        }
+
+        // Close URL modal
+        function closeUrlModal() {
+            urlModal.style.display = 'none';
+            currentPostId = null;
+        }
+
+        // Save URL for post
+        function saveUrlForPost() {
+            if (currentPostId) {
+                const url = urlInput.value.trim();
+                const postIndex = blogPosts.findIndex(p => p.id === currentPostId);
+                
+                if (postIndex !== -1) {
+                    blogPosts[postIndex].url = url;
+                    renderBlogPosts(blogPosts);
+                    closeUrlModal();
                 }
-            });
-        };
-        
-        window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('load', fadeInOnScroll);
+            }
+        }
+
+        // Fade-in animation on scroll
+        function initFadeIn() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', fadeInOnScroll);
+            window.addEventListener('load', fadeInOnScroll);
+            // Initial check
+            fadeInOnScroll();
+        }
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Initialize the blog when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initBlog);
     </script>
 </body>
-      </html>
+</html>
